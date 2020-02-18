@@ -90,22 +90,16 @@ function merge_submodule {
 # $2 - upgrade target branch name
 function update_all_to_release {
 	# Check for required parameters
-	test -z ${1+x} || test -z ${2+x} && \
+	test -z ${1} || test -z ${2} && \
 		echo "Missing parameter in ${FUNCNAME[0]}" && \
 		return 1
 
 	ret=0
 	ret_dir="$(pwd)"
 	cd "$(git rev-parse --show-toplevel)"
-	home_branch="$(git symbolic-ref --short HEAD)"
-	if [ "$home_branch" = "fatal: ref HEAD is not a symbolic ref" ]; then
-		tput setf 1
-		echo "Please so not attempt to update all from detached head."
-		echo "Create a branch to store changes on. ABORTING!"
-		tput sgr0
-		exit 1
-	fi
+	home_commit="$(git rev-parse HEAD)"
 
+	# check if target branch is valid while probing it
 	if ! git checkout "$1"; then
 		tput setf 1
 		echo "Target branch for upgrade not found. ABORTING!"
@@ -114,9 +108,20 @@ function update_all_to_release {
 	fi
 	git submodule update --recursive
 	target_submodule_output=$(git submodule status)
-	git checkout "$home_branch"
+
+	# return to starting branch
+	git checkout "$home_commit"
 	git submodule update --recursive
 
+	# create destination branch
+	if ! git checkout -b "$2"; then
+		tput setf 1
+		echo "Could not make target branch. ABORTING!"
+		tput sgr0
+		exit 1
+	fi
+
+	# merge each submodule and create a branch
 	IFS=$'\n'
 	for line in $target_submodule_output; do
 		sm_path=$(echo $line | \
@@ -134,12 +139,19 @@ function update_all_to_release {
 		fi
 		branch_submodule "$sm_path" "$2"
 		push_submodule "$sm_path" "$2"
+		git add "$sm_path"
 	done
-	git checkout -b "$2"
-	#git add .
-	#git commit -m "USS: Update from $home_branch to $1"
+	unset IFS
+
+	git commit -m "USS: Update from $home_commit to $1"
 
 }
+
+# Check for required parameters
+test -z ${1} || test -z ${2} && \
+	echo "Usage: update-submodules.sh <target upgrade branch>"\
+	"<destination branch>" && \
+	exit 1
 
 cd "$(git rev-parse --show-toplevel)"
 update_all_to_release "$1" "$2"
