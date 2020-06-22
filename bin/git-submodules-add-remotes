@@ -1,0 +1,105 @@
+#!/usr/bin/env perl
+
+=head1 NAME
+
+git-submodule-add-remotes - Add and fetch remotes for each submodule in a repo
+
+=head1 SYNOPSIS
+
+    $ cd <path to your repo>
+    $ git-submodule-add-remote <path to source_sync.sh>
+
+The submodule remotes are pulled from a file in the format of Nvidia's
+C<Linux_for_Tegra/source_sync.sh>.  Each submodule gets a uniquely-named
+remote.
+
+As well as adding the remotes, this script runs C<git fetch --all> to fetch
+their contents.
+
+=head1 AUTHOR
+
+Christopher White, C<< <cwhite@d3engineering.com> >>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2019 D3 Engineering, LLC.  All Rights Reserved.
+
+=cut
+
+our $VERSION='0.1';
+
+use 5.014;  # for s///r
+use strict;
+use warnings;
+
+use autodie;
+use Config::GitLike;
+use Getopt::Long 2.33 qw(:config auto_help auto_version);
+use IO::Handle;
+use Pod::Usage;
+
+STDOUT->autoflush(1);
+STDERR->autoflush(1);
+
+exit main();
+
+sub main {
+    # Cmdline
+    my $man;
+    GetOptions('man' => \$man) or pod2usage;
+    pod2usage(-verbose => 2, -exitcode => 0) if $man;
+
+    pod2usage(-message => 'Please specify a source_sync.sh filename',
+        -exitval => 2, -verbose => 0) unless @ARGV;
+
+    my $ssync_fn = shift @ARGV;
+    die "$ssync_fn isn't readable" unless -f -r $ssync_fn;
+
+    # Load the submodules
+
+    my $c=Config::GitLike->load_file(".gitmodules");
+    die "Couldn't load .gitmodules" unless $c;
+
+    my %submodules = map { /submodule\.(.+)\.[^.]+$/ ? ($1 => 1) : () } keys %$c;
+
+    # Load the URLs for the remotes
+    my %remotes;
+    open my $fd, '<', $ssync_fn;
+    while(<$fd>) {
+        my $rc;     # Thanks to BDFOY
+        next unless ($rc = /^SOURCE_INFO/../^"/ and $rc !~ /(^1|E0)$/);
+        my (undef, $submod, $url) = split /:/;
+        next unless $submod and $url;
+        $remotes{$submod} = "git://$url";   # source_sync.sh omits this prefix
+    }
+    close $fd;
+
+    # Make sure the submodules are present
+    _msg("submodule update");
+    system "git submodule update --init --recursive";
+
+    # Add the remotes
+
+    foreach (keys %submodules) {
+        next unless exists $remotes{$_};
+        my $url = $c->{"submodule.$_.url"};
+        my $path = $c->{"submodule.$_.path"};
+        my $remote = 'nv_' . ($_ =~ s/[^a-z0-9-]/_/gr);
+        _msg($path);
+        system qq{sh -c '
+            set -x
+            cd "$path"
+            git remote add "$remote" "$remotes{$_}"
+            git fetch --all
+        '};
+    }
+
+    return 0;
+} #main()
+
+# Print a diagnostic/progress message
+sub _msg {
+    print STDERR "### @_\n";
+} #_msg()
+
+# vi: set ts=4 sts=4 sw=4 et ai: #
