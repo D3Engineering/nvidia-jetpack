@@ -42,7 +42,7 @@
 	url = https://github.com/D3Engineering/nvidia-kernel-kernel-4.9.git
 [submodule "kernel-nvgpu"]
 	path = kernel/nvgpu
-	url = https://github.com/D3Engineering/nvidia-kernel-kernel-nvgpu.git
+	url = https://github.com/D3Engineering/nvidia-kernel-nvgpu.git
 [submodule "kernel-nvidia"]
 	path = kernel/nvidia
-	url = https://github.com/D3Engineering/nvidia-kernel-kernel-nvidia.git
+	url = https://github.com/D3Engineering/nvidia-kernel-nvidia.git
