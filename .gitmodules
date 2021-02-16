@@ -48,4 +48,5 @@
 	url = ../nvidia-kernel-nvidia.git
 [submodule "hardware-nvidia-platform-t19x-jakku"]
 	path = hardware/nvidia/platform/t19x/jakku
-	url = ../nvidia-hardware-nvidia-platform-t19x-jakku-dts.git
+	url = git@github.com:D3Engineering/nvidia-hardware-nvidia-platform-t19x-jakku-dts.git
+	branch = d3/4.0.0
