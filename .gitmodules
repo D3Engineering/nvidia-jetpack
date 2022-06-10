@@ -47,5 +47,5 @@
 	path = kernel/nvidia
 	url = ../nvidia-kernel-nvidia.git
 [submodule "hardware-nvidia-platform-t19x-jakku"]
-	path = hardware/nvidia/platform/t19x/jakku
+	path = hardware/nvidia/platform/t19x/jakku/kernel-dts
 	url = ../nvidia-hardware-nvidia-platform-t19x-jakku-dts.git
