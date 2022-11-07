@@ -22,3 +22,27 @@
 [submodule "hardware-nvidia-platform-t19x-jakku"]
 	path = hardware/nvidia/platform/t19x/jakku/kernel-dts
 	url = ../nvidia-hardware-nvidia-platform-t19x-jakku-dts.git
+[submodule "hardware/nvidia/platform/t19x/galen-industrial/kernel-dts"]
+	path = hardware/nvidia/platform/t19x/galen-industrial/kernel-dts
+	url = https://github.com/D3Engineering/nvidia-hardware-nvidia-platform-t19x-galen-industrial-dts
+[submodule "hardware/nvidia/platform/t19x/mccoy/kernel-dts"]
+	path = hardware/nvidia/platform/t19x/mccoy/kernel-dts
+	url = https://github.com/D3Engineering/nvidia-hardware-nvidia-platform-t19x-mccoy-dts
+[submodule "hardware/nvidia/platform/t23x/common"]
+	path = hardware/nvidia/platform/t23x/common
+	url = https://github.com/D3Engineering/nvidia-hardware-nvidia-platform-t23x-common
+[submodule "hardware/nvidia/platform/t23x/concord/kernel-dts"]
+	path = hardware/nvidia/platform/t23x/concord/kernel-dts
+	url = https://github.com/D3Engineering/nvidia-hardware-nvidia-platform-t23x-concord-dts
+[submodule "hardware/nvidia/soc/t23x"]
+	path = hardware/nvidia/soc/t23x
+	url = https://github.com/D3Engineering/nvidia-hardware-nvidia-soc-t23x
+[submodule "kernel/kernel-5.10"]
+	path = kernel/kernel-5.10
+	url = https://github.com/D3Engineering/nvidia-kernel-kernel-5.10
+[submodule "kernel/nvethernetrm"]
+	path = kernel/nvethernetrm
+	url = https://github.com/D3Engineering/nvidia-kernel-nvethernetrm
+[submodule "tegra/kernel-src/nv-kernel-display-driver"]
+	path = tegra/kernel-src/nv-kernel-display-driver
+	url = https://github.com/D3Engineering/nvidia-tegra-kernel-src-open-gpu-modules
