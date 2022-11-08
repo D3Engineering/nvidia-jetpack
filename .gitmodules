@@ -1,48 +1,48 @@
-[submodule "hardware/nvidia/platform/t19x/common"]
+[submodule "hardware-nvidia-platform-t19x-common"]
 	path = hardware/nvidia/platform/t19x/common
-	url = ../hardware/nvidia/platform/t19x/common.git
-[submodule "hardware/nvidia/platform/t19x/galen/kernel-dts"]
+	url = ../nvidia-hardware-nvidia-platform-t19x-common.git
+[submodule "hardware-nvidia-platform-t19x-galen-kernel-dts"]
 	path = hardware/nvidia/platform/t19x/galen/kernel-dts
-	url = ../hardware/nvidia/platform/t19x/galen/stardust-dts.git
-[submodule "hardware/nvidia/platform/tegra/common"]
+	url = ../nvidia-hardware-nvidia-platform-t19x-galen-kernel-dts.git
+[submodule "hardware-nvidia-platform-tegra-common"]
 	path = hardware/nvidia/platform/tegra/common
-	url = ../hardware/nvidia/platform/tegra/common.git
-[submodule "hardware/nvidia/soc/t19x"]
+	url = ../nvidia-hardware-nvidia-platform-tegra-common.git
+[submodule "hardware-nvidia-soc-t19x"]
 	path = hardware/nvidia/soc/t19x
-	url = ../hardware/nvidia/soc/t19x.git
-[submodule "hardware/nvidia/soc/tegra"]
+	url = ../nvidia-hardware-nvidia-soc-t19x.git
+[submodule "hardware-nvidia-soc-tegra"]
 	path = hardware/nvidia/soc/tegra
-	url = ../hardware/nvidia/soc/tegra.git
-[submodule "kernel/nvgpu"]
+	url = ../nvidia-hardware-nvidia-soc-tegra.git
+[submodule "kernel-nvgpu"]
 	path = kernel/nvgpu
-	url = ../kernel/linux-nvgpu.git
-[submodule "kernel/nvidia"]
+	url = ../nvidia-kernel-nvgpu.git
+[submodule "kernel-nvidia"]
 	path = kernel/nvidia
-	url = ../kernel/linux-nvidia.git
-[submodule "hardware/nvidia/platform/t19x/jakku/kernel-dts"]
+	url = ../nvidia-kernel-nvidia.git
+[submodule "hardware-nvidia-platform-t19x-jakku"]
 	path = hardware/nvidia/platform/t19x/jakku/kernel-dts
-	url = ../hardware/nvidia/platform/t19x/jakku-dts
+	url = ../nvidia-hardware-nvidia-platform-t19x-jakku-dts.git
 [submodule "hardware/nvidia/platform/t19x/galen-industrial/kernel-dts"]
 	path = hardware/nvidia/platform/t19x/galen-industrial/kernel-dts
-	url = ../hardware/nvidia/platform/t19x/galen-industrial-dts.git
+	url = ../nvidia-hardware-nvidia-platform-t19x-galen-industrial-dts
 [submodule "hardware/nvidia/platform/t19x/mccoy/kernel-dts"]
 	path = hardware/nvidia/platform/t19x/mccoy/kernel-dts
-	url = ../hardware/nvidia/platform/t19x/mccoy-dts.git
+	url = ../nvidia-hardware-nvidia-platform-t19x-mccoy-dts
 [submodule "hardware/nvidia/platform/t23x/common"]
 	path = hardware/nvidia/platform/t23x/common
-	url = ../hardware/nvidia/platform/t23x/common-dts.git
+	url = ../nvidia-hardware-nvidia-platform-t23x-common
 [submodule "hardware/nvidia/platform/t23x/concord/kernel-dts"]
 	path = hardware/nvidia/platform/t23x/concord/kernel-dts
-	url = ../hardware/nvidia/platform/t23x/concord-dts.git
+	url = ../nvidia-hardware-nvidia-platform-t23x-concord-dts
 [submodule "hardware/nvidia/soc/t23x"]
 	path = hardware/nvidia/soc/t23x
-	url = ../hardware/nvidia/soc/t23x.git
+	url = ../nvidia-hardware-nvidia-soc-t23x
 [submodule "kernel/kernel-5.10"]
 	path = kernel/kernel-5.10
-	url = ../kernel/linux-5.10.git
+	url = ../nvidia-kernel-kernel-5.10
 [submodule "kernel/nvethernetrm"]
 	path = kernel/nvethernetrm
-	url = ../kernel/nvethernetrm.git
+	url = ../nvidia-kernel-nvethernetrm
 [submodule "tegra/kernel-src/nv-kernel-display-driver"]
 	path = tegra/kernel-src/nv-kernel-display-driver
-	url = ../open-gpu-kernel-modules.git
+	url = ../nvidia-tegra-kernel-src-open-gpu-modules
